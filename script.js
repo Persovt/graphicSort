@@ -12,15 +12,24 @@ const randomArray = (min, max, lngt) => {
 
   return arr;
 };
-let arrNumber = randomArray(window.innerHeight, 0, window.innerWidth / 3);
-const ZOOM = 1;
-const render =  () => {
 
-   
-
+const ZOOM = 0.0005;
+let arrNumber = randomArray(
+  window.innerHeight / ZOOM,
+  0,
+  window.innerWidth / ZOOM
+);
+const render = () => {
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
   arrNumber.map((item, index) => {
-    ctx.fillRect(3 * index * ZOOM, window.innerHeight, 2 * ZOOM, item * ZOOM);
+    ctx.fillRect(index * ZOOM, window.innerHeight, 2 * ZOOM, item * ZOOM);
+    let r = ((104/arrNumber.length) * index) % 104;
+    let g = ((1/arrNumber.length) * index) % 1;
+    let b = ((250/arrNumber.length) * index) % 250;
+  
+    ctx.fillStyle =
+      "rgb(" + r + "," + g + "," + b + ")";
   });
 
   requestAnimationFrame(render);
@@ -32,7 +41,7 @@ function HeapSort(A) {
     j,
     k,
     t;
-   while (true) {
+  while (true) {
     if (i > 0) t = A[--i];
     else {
       n--;
@@ -54,13 +63,12 @@ function HeapSort(A) {
   }
 }
 (async () => {
-    
-   render();
-   
-   console.time('1')
-  HeapSort(arrNumber)
-  console.timeEnd('1')
-  
+  render();
+
+  console.time("1");
+  HeapSort(arrNumber);
+  //   arrNumber.sort((a,b) => a-b)
+  console.timeEnd("1");
 })();
 
 // const arr = new Array(10)

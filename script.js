@@ -13,7 +13,7 @@ const randomArray = (min, max, lngt) => {
   return arr;
 };
 
-const ZOOM = 0.0005;
+const ZOOM = 0.05;
 let arrNumber = randomArray(
   window.innerHeight / ZOOM,
   0,
@@ -66,7 +66,7 @@ function HeapSort(A) {
   render();
 
   console.time("1");
-  HeapSort(arrNumber);
+//   HeapSort(arrNumber);
   //   arrNumber.sort((a,b) => a-b)
   console.timeEnd("1");
 })();
